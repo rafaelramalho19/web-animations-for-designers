@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code in the dark</title>
+<style>
+html,
+body {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  font-size: 0;
+}
+
+.code-in-the-dark {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #1e2c67 0%, #cf6428 45%);
+}
+
+* {
+  box-sizing: border-box;
+  transform-origin: center center;
+}
+
+@keyframes background {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-130%, 0, 0);
+  }
+  50.0001% {
+    transform: translate3d(130%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  backface-visibility: hidden;
+}
+
+.opaque::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  background-blend-mode: color;
+}
+
+.planets {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: stretch;
+  justify-content: space-between;
+  animation: 150s background infinite both linear;
+}
+
+.planet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 100%;
+}
+
+.big-planet {
+  transform: translateX(-15%);
+}
+
+.small-planet {
+  left: initial;
+  right: 0px;
+  transform: translateX(15%);
+}
+
+@keyframes stars {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-10%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(15%);
+  animation: 150s background infinite both linear;
+}
+
+.stars--static {
+  opacity: 0.4;
+  animation: 150s background infinite reverse both linear;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-stars {
+  animation: fade 4s ease-in-out infinite;
+}
+
+.stars--close {
+  animation: stars 50s infinite both linear;
+}
+
+@keyframes infinite-loop {
+  to {
+    background-position: 0 0;
+  }
+}
+
+.clouds {
+  position: absolute;
+  display: flex;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: 20s infinite-loop infinite both linear;
+  background-repeat: repeat-x;
+  background-position: 1680px 0;
+  background-size: contain;
+  background-image: url(assets/clouds.svg);
+}
+
+.bottom-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+}
+
+@keyframes mountains {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  50.001% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.mountains-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mountains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 1px);
+  height: 100%;
+
+  background-repeat: repeat-x;
+  background-position: 1702px 0;
+  background-size: cover;
+  animation: 75s infinite-loop infinite both linear;
+
+  background-image: url('assets/back-mountains.svg');
+}
+
+.mountains--back {
+  /* 🔨 didn't feel like fixing the svg */
+  width: calc(100% - 3px);
+}
+
+.mountains--middle {
+  top: 5%;
+  animation-duration: 60s;
+  background-position: 1872px 0;
+  background-image: url('assets/middle-mountains.svg');
+}
+
+.mountains--front {
+  top: 12.5%;
+  animation-duration: 50s;
+  background-position: 1974px 0;
+  background-image: url('assets/front-mountains.svg');
+}
+
+.mountain {
+  width: auto;
+  height: 100%;
+  flex: 1 0 auto;
+  object-fit: cover;
+}
+
+/**
+* If you find this comment, just want to say:
+* You're awesome :D
+**/
+
+.rover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 242px;
+  justify-content: center;
+  align-items: center;
+
+  animation: bumpy 4s infinite ease-in-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  75% {
+    transform: rotate(540deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.rover__wheels {
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 50%;
+  display: flex;
+  transform: translate(-50%, -50%);
+  padding: 0 4px;
+}
+
+.rover__container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 10%;
+  width: 100%;
+}
+
+.rover__wheel {
+  display: flex;
+  position: relative;
+  padding: 0 4px;
+}
+
+@keyframes bumps {
+  0% { transform: translateY(0); }
+  15% { transform: translateY(-8px); }
+  30% { transform: translateY(8px); }
+  45% { transform: translateY(-8px); }
+  60% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bumpy {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(-4deg); }
+  30% { transform: rotate(4deg); }
+  45% { transform: rotate(-4deg); }
+  60% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+.rover__wheel-image {
+  animation: bumps 4s infinite linear;
+  animation-delay: .4s;
+}
+
+.rover__wheel:first-child .rover__wheel-image {
+  animation-delay: .6s;
+}
+
+.rover__wheel:last-child .rover__wheel-image {
+  animation-delay: .2s;
+}
+
+.rover__wheel-image::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: lightgrey;
+}
+
+.rover__wheel img {
+  animation: spin 6s linear infinite; 
+}
+
+.rover__body {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.rover__body-top {
+  border-bottom: 24px solid white;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  width: 200px;
+}
+
+.rover__body-middle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 24px solid #b6c3c5;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  width: 240px;
+}
+
+.rover__body--reverted {
+  transform: scale(-1);
+}
+
+.rover__body-middle.rover__body--reverted {
+  border-left-width: 8px;
+  border-right-width: 8px;
+}
+
+.rover__body-bottom {
+  border-bottom: 24px solid #b6c3c5;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  height: 0;
+  width: 224px;
+}
+
+.rover__window {
+  width: 14px;
+  height: 14px;
+  background-color: #d2d4d1;
+  margin: 2px 6px;
+}
+
+.rover {
+  position: relative;
+}
+
+.rover__arm {
+  width: 10px;
+  background-color: #b6c3c5;
+}
+
+.rover__ball {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #3b4258;
+}
+
+.rover__head {
+  display: flex;
+  width: 100%;
+  flex: 1 0 auto;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.rover__head > * {
+  position: relative;
+  width: 33%;
+  height: 100px;
+}
+
+.rover__arm-1 {
+  position: absolute;
+  bottom: 0;
+  height: 33%;
+  right: 0;
+}
+
+.rover__arm-2 {
+  position: absolute;
+  bottom: 26%;
+  height: 66%;
+  right: 26px;
+  transform: rotate(-60deg);
+}
+
+.rover__arm-3 {
+  position: absolute;
+  top: 26px;
+  height: 40%;
+  left: 18px;
+  transform: rotate(-180deg);
+}
+
+.rover__ball-1 {
+  position: absolute;
+  top: calc(63% - 13px);
+  left: calc(100% - 17px);
+  width: 24px;
+  height: 24px;
+}
+
+.rover__ball-2 {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes army {
+  from {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.rover__claw-army {
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  animation: army 3s ease-in-out infinite;
+}
+
+.rover__claw-arm {
+  position: absolute;
+  left: 10px;
+  top: calc(50% + 14px);
+}
+
+.rover__arm-face {
+  position: absolute;
+  bottom: 0;
+  left: 33%;
+  height: 66%;
+}
+
+@keyframes antenna {
+  to { transform: rotate3d(0, 1, 0, -360deg); }
+}
+
+.rover__arm-antenna {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20%;
+}
+
+.rover__antenna {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 20px;
+  left: -23px;
+  width: 70%;
+  height: 70%;
+}
+
+.rover__antenna-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: antenna 5s infinite both linear;
+  
+  width: 40px;
+  height: 40px;
+}
+
+
+.rover__antenna-back,
+.rover__antenna-front-2,
+.rover__antenna-front {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.rover__antenna-back {
+  width: 100%;
+  border-radius: 50%;
+  background: radial-gradient(grey, white 20%, white 50%, grey 90%);
+  backface-visibility: hidden;
+  transform: translate3d(-50%, -50%, -1px) rotate3d(0, 1, 0, 180deg);
+  transform-style: preserve-3d;
+}
+
+.rover__antenna-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;  
+  transform: translate(-50%, -50%) rotate3d(0, 1, 0, -90deg);
+}
+
+.rover__antenna-front-2 {
+  width: 100%;
+  border-radius: 50%;
+  background-color: black;
+  backface-visibility: hidden;
+}
+
+.rover__antenna-front-cut {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translateX(50%);
+}
+
+.rover__antenna-front__background {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.rover__arm-antenna-2 {
+  height: 4px;
+  width: 12px;
+  
+  transform: translate3d(-6px, 0, 15px);
+  transform-style: preserve-3d;
+}  
+
+.rover__arm-antenna-2-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  transform-style: preserve-3d;
+  transform: translate3d(0, -50%, 0) rotate3d(0, 1, 0, 90deg);
+}
+
+.rover__antenna-ball {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 1px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3b4258;
+  backface-visibility: hidden;
+
+  transform: translate3d(-25%, -50%, 14px) rotate3d(0, 1, 0, 90deg);
+}
+
+.rover__antenna-ball--2 {
+  left: 0;
+  transform: translate3d(150%, -50%, 14px) rotate3d(0, 1, 0, 0deg);
+}
+
+.rover__antenna-ball--3 {
+  left: calc(50% - 3px);
+  transform: translate3d(-25%, -50%, 14px) rotate3d(0, 1, 0, 270deg);
+}
+    </style>
+</head>
+
+<body>
+    <div class="code-in-the-dark">
+        <div class="background opaque">
+            <div class="fade-stars">
+                <img class="stars stars--static " src="assets/distant-stars.svg" alt="a11y matters"/>
+            </div>
+            <img class="stars" src="assets/distant-stars.svg" alt="a11y matters"/>
+            <img class="stars stars--close opaque" src="assets/close-stars.svg" alt="a11y matters"/>
+            <div class="planets">
+                <img class="planet big-planet" src="assets/large-planet.svg" alt="a11y matters"/>
+                <img class="planet small-planet" src="assets/small-planet.svg" alt="a11y matters"/>
+            </div>
+            <div class="clouds">
+            </div>
+        </div>
+        <div class="bottom-section">
+            <div class="mountains-container">
+                <div class="mountains mountains--back"></div>
+                <div class="mountains mountains--middle"></div>
+                <div class="mountains mountains--front"></div>
+            </div>
+        </div>
+        <div class="rover__container">
+            <div class="rover">
+                <div class="rover__head">
+                    <div class="rover__claw">
+                        <div class="rover__arm rover__arm-1"></div>
+                        <div class="rover__arm rover__arm-2"></div>
+                        <div class="rover__claw-army">
+                            <div class="rover__arm rover__arm-3"></div>
+                            <img class="rover__claw-arm" src="assets/rover-claw.svg" alt="a11y matters!">
+                        </div>
+                        <div class="rover__ball rover__ball-1"></div>
+                        <div class="rover__ball rover__ball-2"></div>
+                    </div>
+                    <div class="rover__face">
+                        <div class="rover__arm rover__arm-face"></div>
+                        <img class="rover__camera" src="assets/rover-camera.svg" alt="a11y matters :D">
+                    </div>
+                    <div>
+                        <div class="rover__arm rover__arm-antenna"></div>
+                        <div class="rover__antenna">
+                            <div class="rover__antenna-wrapper">
+                                <div class="rover__antenna-back">
+                                    <div class="rover__arm-antenna-2-wrapper">
+                                        <div class="rover__arm rover__arm-antenna-2"></div>
+                                    </div>
+                                    <div class="rover__antenna-ball"></div>
+                                    <div class="rover__antenna-ball rover__antenna-ball--2"></div>
+                                    <div class="rover__antenna-ball rover__antenna-ball--3"></div>
+                                </div>
+                                <div class="rover__antenna-front-2"></div>
+                                <div class="rover__antenna-front">
+                                    <div class="rover__antenna-front-cut">
+                                        <div class="rover__antenna-front__background"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rover__body">
+                    <div class="rover__body-top"></div>
+                    <div class="rover__body-middle">
+                        <div class="rover__window"></div>
+                        <div class="rover__window"></div>
+                        <div class="rover__window"></div>
+                    </div>
+                    <div class="rover__body-middle rover__body--reverted"></div>
+                    <div class="rover__body-bottom rover__body--reverted"></div>
+                </div>
+                <div class="rover__wheels">
+                    <div class="rover__wheel">
+                        <div class="rover__wheel-image">
+                            <img src="assets/rover-wheel.svg" alt="a11y matters">
+                        </div>
+                    </div>
+                    <div class="rover__wheel">
+                        <div class="rover__wheel-image">
+                            <img src="assets/rover-wheel.svg" alt="a11y matters">
+                        </div>
+                    </div>
+                    <div class="rover__wheel">
+                        <div class="rover__wheel-image">
+                            <img src="assets/rover-wheel.svg" alt="a11y matters">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

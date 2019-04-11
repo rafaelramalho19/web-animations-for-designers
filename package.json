@@ -1,0 +1,24 @@
+{
+  "name": "web-animations-for-designers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "reveal-md": "^3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "reveal-md slides.md",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelramalho19/web-animations-for-designers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelramalho19/web-animations-for-designers/issues"
+  },
+  "homepage": "https://github.com/rafaelramalho19/web-animations-for-designers#readme"
+}
