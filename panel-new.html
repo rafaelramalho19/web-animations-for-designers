@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <style>
+    body {
+      font-family: "Roboto";
+      font-size: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f2f2f2;
+      overflow: hidden;
+    }
+
+    .panel {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      top: 0;
+      left: 100%;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+
+      width: 77vw;
+      height: 100vh;
+      transition: left 200ms ease-in-out;
+
+      background-color: #fff;
+      border-radius: 8px 0 8px 0;
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      z-index: 8888;
+    }
+
+    .panel.active {
+      left: 23%;
+      width: auto;
+    }
+
+    .panel-button {
+      display: block;
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .close {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 16px;
+      height: 16px;
+      top: 8px;
+      right: 8px;
+      
+      border-radius: 50%;
+      border: 1px solid black;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    a {
+      color: #587482;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #263238;
+    }
+
+    #headnav {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      flex-basis: 2em;
+      flex-grow: 0;
+      flex-shrink: 0;
+      background: #2196f3;
+      vertical-align: middle;
+      padding: 1em;
+      display: flex;
+      flex-direction: row;
+    }
+
+    #headnav .form {
+      flex-grow: 1;
+    }
+
+    #headnav .form form {
+      width: 100%;
+    }
+
+    #headnav .form form>* {
+      width: 100%;
+    }
+
+    #headnav .menu {
+      display: flex;
+      padding-right: 1em;
+    }
+
+    #headnav .menu:last-child {
+      padding-right: 0;
+    }
+
+    #headnav .menu a {
+      padding-right: 1em;
+      color: #f2f2f2;
+    }
+
+    #headnav .menu a:hover,
+    #headnav .menu a.logo {
+      color: #fff;
+    }
+
+    #headnav .menu a:last-child {
+      padding-right: 0;
+    }
+
+    main {
+      display: flex;
+      flex-shrink: 1;
+      align-items: stretch;
+    }
+
+    #sidenav {
+      overflow-y: auto;
+      width: 15em;
+      white-space: nowrap;
+    }
+
+    #sidenav .menu {
+      padding: 0.5em;
+      border-bottom: 1px solid #808080;
+    }
+
+    #sidenav .menu:last-child {
+      border-bottom: none;
+    }
+
+    #sidenav .menu h1 {
+      font-size: 0.75em;
+      color: #263238;
+    }
+
+    #sidenav .menu a {
+      font-size: 0.75em;
+      display: block;
+      padding: 0.5em;
+    }
+
+    #sidenav .menu a .material-icons {
+      vertical-align: middle;
+      padding-right: 0.5em;
+    }
+
+    #sidenav .menu a.active {
+      background: #4caf50;
+      color: #fff;
+    }
+
+    #sidenav .menu a.active:hover {
+      background: #4caf50;
+    }
+
+    #sidenav .menu a:hover {
+      background: #80e27e;
+    }
+
+    #articles {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    }
+
+    article {
+      width: 80%;
+      cursor: pointer;
+      padding: 0.5em;
+      margin-top: 0.5em;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    #articles article:hover {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .logo {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body translate="no">
+  <nav id="headnav">
+    <div class="menu">
+      <a class="sidenav-toggle"><i class="material-icons">menu</i></a><a class="logo">Title</a>
+    </div>
+    <div class="menu form">
+      <form>
+        <input type="text" />
+      </form>
+    </div>
+    <div class="menu">
+      <a><i class="material-icons">apps</i></a><a><i class="material-icons">notifications</i></a><a><i
+          class="material-icons">more_vert</i></a>
+    </div>
+  </nav>
+  <main>
+    <nav id="sidenav">
+      <div class="menu">
+        <a class="active"><i class="material-icons">inbox</i>Inbox</a><a><i
+            class="material-icons">hourglass_empty</i>Snoozed</a><a><i class="material-icons">check</i>Done</a>
+      </div>
+      <div class="menu">
+        <h1>You should be focused on Rafael</h1>
+        <a><i class="material-icons">inbox</i>And not here</a>
+      </div>
+    </nav>
+    <section id="articles">
+      <article>
+        <i class="material-icons">assignment</i><span>Assignment</span>
+      </article>
+      <article>Hammer 1</article>
+      <article>Hammer 2</article>
+      <article>Hammer 1.1</article>
+      <article id="eheheh-ihammered">No-hammerplz</article>
+    </section>
+
+    <div class="panel">
+      <div>
+        <h2>Wild slide panel</h2>
+      </div>
+      <div class="close">X</div>
+      <div class="panel-button">
+        Some link I didn't figured out what it was supposed to do 🤔
+      </div>
+    </div>
+  </main>
+
+  <script>
+    var slideAmount = 1;
+    function toggleFirstPanel() {
+      document.querySelector(".panel").classList.toggle("active");
+    }
+
+    function toggleSecondPanel() {
+      const panel = document.querySelector(".panel");
+      const newPanel = document.createElement("div");
+      newPanel.className = "panel";
+      newPanel.innerHTML = '<div class="close">X</div><h2>Now I\'m a new panel :D</h2>';
+      setTimeout(() => {
+        newPanel.classList.add("active");
+        newPanel.style.left = `calc(23% + ${slideAmount * 20}px)`;
+      }, 200);
+      panel.appendChild(newPanel);
+      slideAmount++;
+    }
+
+    document.querySelector("#eheheh-ihammered").addEventListener("click", toggleFirstPanel);
+
+    document.querySelector(".panel-button").addEventListener("click", toggleSecondPanel);
+
+    document.body.addEventListener('click', ({target}) => {
+      if(!target) return;
+      if(!target.classList.contains('close')) return;
+      
+      target.parentNode.classList.remove('active');
+      target.parentNode.style = '';
+      slideAmount--;
+    });
+
+    document.body.addEventListener("keydown", ({ keyCode }) => {
+      if (keyCode === 73) toggleFirstPanel();
+      if (keyCode === 85) toggleSecondPanel();
+    });
+  </script>
+</body>
+
+</html>
