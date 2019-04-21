@@ -8,7 +8,7 @@
 
 ### Rafael Ramalho
 
-<img width="200" height="200" data-src="images/rafael.jpeg" style="border-radius: 50%; object-fit: cover;"/>
+<img width="200" height="200" data-src="rafael.jpeg" style="border-radius: 50%; object-fit: cover;"/>
 
 > Front-end developer @ Blip.pt
 
@@ -54,7 +54,7 @@
 
 ---
 
-<!-- .slide: data-background-video="videos/designers.mp4" -->
+<!-- .slide: data-background-video="designers.mp4" -->
 
 
 ---
@@ -99,11 +99,11 @@ Is my animation too complex?
 
 ----
 
-<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="videos/betslip.webm" controls></video>
+<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="betslip.webm" controls></video>
 
 ----
 
-<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="videos/betslip-anim.webm" controls></video>
+<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="betslip-anim.webm" controls></video>
 
 ---
 
@@ -111,11 +111,11 @@ Is my animation affecting other elements?
 
 ----
 
-<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="videos/lag-animation.webm" controls loop></video>
+<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="lag-animation.webm" controls loop></video>
 
 ----
 
-<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="videos/good-animation.webm" controls loop></video>
+<video style="width: auto; height: 75vh; max-height: 100%;" muted data-src="good-animation.webm" controls loop></video>
 
 ---
 
@@ -193,11 +193,11 @@ I'm being honest here...
 Honorable mentions
 
 <div style="display: flex; justify-content: space-evenly; width: 100%; align-items: center;">
-    <img class="fragment fade-left" height="200" style="border: none; background: transparent; border-radius: 8px" data-src="images/celts.svg"/>
-    <img class="fragment fade-left" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="images/costa.jpg"/>
-    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="images/marta.jpg"/>
-    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="images/rui.jpg"/>
-    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="images/diana.jpg"/>
+    <img class="fragment fade-left" height="200" style="border: none; background: transparent; border-radius: 8px" data-src="celts.svg"/>
+    <img class="fragment fade-left" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="costa.jpg"/>
+    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="marta.jpg"/>
+    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="rui.jpg"/>
+    <img class="fragment fade-right" height="250" style="border: none; background: transparent; border-radius: 8px" data-src="diana.jpg"/>
 </div>
 
 ---
